@@ -25,7 +25,7 @@ public class CIModuleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CIModule>> getAllCIModules() {
+    public ResponseEntity<List<CIModuleOutputDto>> getAllCIModules() {
         return ResponseEntity.ok(service.getAllCIModules());
     }
 

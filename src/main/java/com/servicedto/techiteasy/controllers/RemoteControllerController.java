@@ -26,7 +26,7 @@ public class RemoteControllerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RemoteController>> getAllRemoteControllers() {
+    public ResponseEntity<List<RemoteControllerOutputDto>> getAllRemoteControllers() {
         return ResponseEntity.ok(service.getAllRemoteControllers());
     }
 

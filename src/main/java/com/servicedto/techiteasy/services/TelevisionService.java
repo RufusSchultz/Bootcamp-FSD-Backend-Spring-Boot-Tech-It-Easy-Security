@@ -12,6 +12,7 @@ import com.servicedto.techiteasy.repositories.TelevisionRepository;
 import com.servicedto.techiteasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,8 +29,12 @@ public class TelevisionService {
         this.wallBracketRepository = wallBracketRepository;
     }
 
-    public List<Television> getAllTelevisions() {
-        return this.televisionRepository.findAll();
+    public List<TelevisionOutputDto> getAllTelevisions() {
+        List<TelevisionOutputDto> list = new ArrayList<>();
+        for (Television i: this.televisionRepository.findAll()) {
+            list.add(TelevisionMapper.fromTelevisionToTelevisionOutputDto(i));
+        }
+        return list;
     }
 
     public TelevisionOutputDto getTelevisionById(Long id) {

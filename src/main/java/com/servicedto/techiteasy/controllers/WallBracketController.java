@@ -25,7 +25,7 @@ public class WallBracketController {
     }
 
     @GetMapping
-    public ResponseEntity<List<WallBracket>> getAllWallBrackets() {
+    public ResponseEntity<List<WallBracketOutputDto>> getAllWallBrackets() {
         return ResponseEntity.ok(service.getAllWallBrackets());
     }
 

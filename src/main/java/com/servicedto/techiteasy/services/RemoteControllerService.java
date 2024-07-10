@@ -8,6 +8,7 @@ import com.servicedto.techiteasy.models.RemoteController;
 import com.servicedto.techiteasy.repositories.RemoteControllerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,8 +20,12 @@ public class RemoteControllerService {
         this.repo = repo;
     }
 
-    public List<RemoteController> getAllRemoteControllers() {
-        return this.repo.findAll();
+    public List<RemoteControllerOutputDto> getAllRemoteControllers() {
+        List<RemoteControllerOutputDto> list = new ArrayList<>();
+        for (RemoteController i: this.repo.findAll()) {
+            list.add(RemoteControllerMapper.fromRemoteControllerToRemoteControllerOutputDto(i));
+        }
+        return list;
     }
 
     public RemoteControllerOutputDto getRemoteControllerById(Long id) {

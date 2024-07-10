@@ -1,7 +1,9 @@
 package com.servicedto.techiteasy.controllers;
 
+import com.servicedto.techiteasy.exceptions.BadRequestException;
 import com.servicedto.techiteasy.exceptions.ProductNameTooLongException;
 import com.servicedto.techiteasy.exceptions.RecordNotFoundException;
+import com.servicedto.techiteasy.exceptions.UsernameNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,6 +23,16 @@ public class ExceptionController {
 
     @ExceptionHandler (value = ProductNameTooLongException.class)
     public ResponseEntity<String> exception (ProductNameTooLongException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler (value = BadRequestException.class)
+    public ResponseEntity<String> exception (BadRequestException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler (value = UsernameNotFoundException.class)
+    public ResponseEntity<String> exception (UsernameNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
